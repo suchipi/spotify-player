@@ -1052,10 +1052,10 @@ puppeteer@^2.0.0:
     rimraf "^2.6.1"
     ws "^6.1.0"
 
-pypress@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/pypress/-/pypress-1.0.0.tgz#16413db8bd20cdc76ff894bc5c6995a546ff0004"
-  integrity sha512-QWpF1UTv1ty/K+VH3bmsp9SVW8yq2vMDdJCv123UGpvI5iIV3u86hKMcvwdgtb9u8BIb0Lhjthxso/6CciJlXw==
+pypress@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pypress/-/pypress-1.0.1.tgz#07046bd99c2203af5f1b2fd7f9a77fc6f7fa848b"
+  integrity sha512-ECT1c1mOy8S3cvXJauitTDWgm5ZEOs74HHxoWfOWf5psBupqCoVovEOidt6DiMzeQArb4XlJE8A4ZupQekTFUw==
   dependencies:
     chalk "^3.0.0"
     cypress-style-async "^1.0.1"

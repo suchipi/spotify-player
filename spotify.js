@@ -94,4 +94,8 @@ spotify.playURL = (url) => {
   });
 };
 
+spotify.logout = () => {
+  py.close();
+};
+
 module.exports = spotify;
