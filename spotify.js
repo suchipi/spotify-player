@@ -82,7 +82,7 @@ spotify.nowPlayingInfo = async () => {
 
   const { el } = await py;
 
-  const text = await el.evaluate((node) => node.innerText);
+  const text = await el.evaluate((node) => node.innerText || node.textContent);
 
   return text;
 };
