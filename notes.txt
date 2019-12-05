@@ -1,7 +1,9 @@
 alsa stuff
 - Check devices with `aplay -l` and `arecord -l`
 - Add loopback device with `sudo modprobe snd-aloop`
-- Use `cava` to visualize output
+- Loopback loops eg. hw:0,0,0 to hw:0,1,0. Default playback device is hw:0,0,0, so use hw:0,1,0 to get virtual "speakers" output as an input device
+- Use `cava` to visualize output, but it gets exclusive access to the device, so you can't use it while using eg ffmpeg
+- cava is configured to show hw:0,1,0 in ~/.config/cava/config
 
 running repl
 - export DISPLAY=:0.0
@@ -9,3 +11,7 @@ running repl
 - Use `nvm use 10` to get node
 - `node repl.js` will open Chrome in xvfb
 - Use `sudo x11vnc -rfbauth ~/.vnc/passwd` to launch vnc server if you want to see the xvfb screen
+
+recording alsa output with ffmpeg
+- `ffmpeg -f alsa -i hw:0,1,0 -t 1 output.wav`
+- ffmpeg must be compiled with alsa support. There's one in ~/bin that is
