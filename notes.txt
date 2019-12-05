@@ -1,0 +1,11 @@
+alsa stuff
+- Check devices with `aplay -l` and `arecord -l`
+- Add loopback device with `sudo modprobe snd-aloop`
+- Use `cava` to visualize output
+
+running repl
+- export DISPLAY=:0.0
+- in another terminal: `Xvfb :0`
+- Use `nvm use 10` to get node
+- `node repl.js` will open Chrome in xvfb
+- Use `sudo x11vnc -rfbauth ~/.vnc/passwd` to launch vnc server if you want to see the xvfb screen
