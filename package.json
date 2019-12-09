@@ -1,6 +1,6 @@
 {
   "name": "@suchipi/spotify-player",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "pypress": "^1.0.1"
+    "pypress": "^2.0.1"
   }
 }

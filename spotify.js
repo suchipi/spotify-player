@@ -1,17 +1,10 @@
 require("dotenv").config();
 
-const py = require("pypress");
+const makePypress = require("pypress");
 
 const spotify = {};
 
-function waitForPypress() {
-  return new Promise((resolve, reject) => {
-    Promise.resolve(py).then(() => {
-      resolve();
-    });
-    py.onError = reject;
-  });
-}
+const py = makePypress();
 
 spotify.login = (username, password) => {
   py.launch({
@@ -31,12 +24,15 @@ spotify.login = (username, password) => {
   py.click("button:withText(Log in)");
   py.should("navigate");
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.searchAndPlay = (term) => {
   py.get("a:withText(Search)").click();
   py.get("input").type(term);
+
+  py.sleep(100);
+
   py.get(":header:withText(Songs)")
     .closest("section")
     .within(() => {
@@ -45,31 +41,31 @@ spotify.searchAndPlay = (term) => {
         .click();
     });
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.play = () => {
   py.get('button[title="Play"]').click();
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.pause = () => {
   py.get('button[title="Pause"]').click();
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.previous = () => {
   py.get("button[title=Previous]").click();
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.next = () => {
   py.get("button[title=Next]").click();
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.startRadio = () => {
@@ -91,7 +87,7 @@ spotify.startRadio = () => {
 
   py.getByText("start radio").click();
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.nowPlayingInfo = async () => {
@@ -116,13 +112,23 @@ spotify.playURL = (url) => {
     py.get("button:withText(Play)").click();
   });
 
-  return waitForPypress();
+  return py.asPromise();
 };
 
 spotify.logout = () => {
   py.close();
 
-  return waitForPypress();
+  return py.asPromise();
 };
+
+spotify.then = (cb, cb2) => {
+  return py.asPromise().then(cb, cb2);
+};
+
+spotify.catch = (cb) => {
+  py.asPromise().catch(cb);
+};
+
+spotify._py = py;
 
 module.exports = spotify;
