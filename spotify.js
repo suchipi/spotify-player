@@ -4,6 +4,15 @@ const py = require("pypress");
 
 const spotify = {};
 
+function waitForPypress() {
+  return new Promise((resolve, reject) => {
+    Promise.resolve(py).then(() => {
+      resolve();
+    });
+    py.onError = reject;
+  });
+}
+
 spotify.login = (username, password) => {
   py.launch({
     // Can't get music to play in headless mode :\
@@ -21,6 +30,8 @@ spotify.login = (username, password) => {
 
   py.click("button:withText(Log in)");
   py.should("navigate");
+
+  return waitForPypress();
 };
 
 spotify.searchAndPlay = (term) => {
@@ -33,22 +44,32 @@ spotify.searchAndPlay = (term) => {
         .first()
         .click();
     });
+
+  return waitForPypress();
 };
 
 spotify.play = () => {
   py.get('button[title="Play"]').click();
+
+  return waitForPypress();
 };
 
 spotify.pause = () => {
   py.get('button[title="Pause"]').click();
+
+  return waitForPypress();
 };
 
 spotify.previous = () => {
   py.get("button[title=Previous]").click();
+
+  return waitForPypress();
 };
 
 spotify.next = () => {
   py.get("button[title=Next]").click();
+
+  return waitForPypress();
 };
 
 spotify.startRadio = () => {
@@ -69,6 +90,8 @@ spotify.startRadio = () => {
   py.sleep(100);
 
   py.getByText("start radio").click();
+
+  return waitForPypress();
 };
 
 spotify.nowPlayingInfo = async () => {
@@ -92,10 +115,14 @@ spotify.playURL = (url) => {
   py.get("header").within(() => {
     py.get("button:withText(Play)").click();
   });
+
+  return waitForPypress();
 };
 
 spotify.logout = () => {
   py.close();
+
+  return waitForPypress();
 };
 
 module.exports = spotify;
