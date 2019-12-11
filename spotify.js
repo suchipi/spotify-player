@@ -108,7 +108,7 @@ spotify.nowPlayingInfo = async () => {
 
 spotify.playURL = (url) => {
   py.goto(url);
-  py.get("header").within(() => {
+  py.get("section.content").within(() => {
     py.get("button:withText(Play)").click();
   });
 

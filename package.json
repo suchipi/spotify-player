@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "pypress": "^2.0.1"
+    "pypress": "^2.0.2"
   }
 }
